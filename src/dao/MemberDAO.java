@@ -5,9 +5,9 @@ import domain.Member;
 import java.sql.*;
 
 public class MemberDAO {
-    private static final String URL = "jdbc:mysql://localhost:3306/java-projectDB";
+    private static final String URL = "jdbc:mysql://localhost:3306/java-projectdb";
     private static final String USER = "root";
-    private static final String PW = "fpdlswj365";
+    private static final String PW = "1234";
 
     public boolean createMember(Member member) {
         String sql = "INSERT INTO member (id, password, age, role) VALUES (?, ?, ?, ?)";

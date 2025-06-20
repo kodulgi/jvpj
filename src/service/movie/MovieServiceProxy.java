@@ -1,8 +1,9 @@
 package service.movie;
 
 import domain.Member;
+import java.util.Scanner;
 
-public class MovieServiceProxy implements MovieService{
+public class MovieServiceProxy implements MovieService {
     private final MovieService movieService;
     private final Member member;
 
@@ -13,16 +14,16 @@ public class MovieServiceProxy implements MovieService{
 
     @Override
     public boolean registerMovie() {
-        if (!"ADMIN".equals(member.getRole())) {
-            System.out.println("권한이 없습니다. 관리자만 영화 등록이 가능합니다.");
+        if (!member.getRole().equals("ADMIN")) {
+            System.out.println("관리자만 영화 등록이 가능합니다.");
             return false;
         }
         return movieService.registerMovie();
     }
-}
 
     @Override
     public boolean exists(String title) {
         return movieService.exists(title);
     }
+}
     

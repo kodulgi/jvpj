@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReservationDAO {
-    private static final String URL = "jdbc:mysql://localhost:3306/java-projectDB?serverTimezone=Asia/Seoul";
+    private static final String URL = "jdbc:mysql://localhost:3306/java-projectdb";
     private static final String USER = "root";
-    private static final String PW = "fpdlswj365";
+    private static final String PW = "1234";
 
     // 예매 내역 저장
     public boolean saveReservation(Reservation reservation) {
