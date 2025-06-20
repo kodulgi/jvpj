@@ -1,5 +1,6 @@
 package observer;
 
+import domain.Reservation;
 import java.util.ArrayList;
 import java.util.List;
 

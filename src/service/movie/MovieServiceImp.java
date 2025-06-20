@@ -35,4 +35,8 @@ public class MovieServiceImp implements MovieService {
         return movieDAO.createMovie(new Movie(title, time, seatCounts));
     }
 
+    @Override
+    public boolean exists(String title) {
+        return movieDAO.getAllMovies().stream().anyMatch(m -> m.getTitle().equals(title));
+    }
 }

@@ -1,5 +1,6 @@
 package main;
 
+import domain.Reservation;
 import dao.MovieDAO;
 import domain.Member;
 import service.movie.MovieService;
@@ -36,17 +37,19 @@ public class MainMenu {
 
             if (choice == 1) {
                 reservationService.reserve(member);   // ★ 예매 서비스 실행
-            }
-            if (choice == 2) {
+            } else if (choice == 2) {
                 if (movieService.registerMovie()) {
                     System.out.println("영화 등록 완료!");
                 }
-            }
-            if (choice == 4) {
+            } else if (choice == 3) {
+                reservationService.showMyPage(member);
+            } else if (choice == 4) {
                 System.out.println("이용해주셔서 감사합니다.");
                 break;
+            } else {
+                System.out.println("번호를 다시 입력해주세요.");
             }
-            // 각 기능은 나중에 연결!
+
         }
     }
 }

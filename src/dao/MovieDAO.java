@@ -58,5 +58,63 @@ public class MovieDAO {
         }
         return movies;
     }
+
+    public boolean decrementSeatCount(int movieId, String seatType) {
+        String columnName = null;
+        switch (seatType) {
+            case "노약좌석": columnName = "senior_seat_count"; break;
+            case "임산부석": columnName = "pregnant_seat_count"; break;
+            case "일반석": columnName = "general_seat_count"; break;
+            case "프리미엄석": columnName = "premium_seat_count"; break;
+            default: throw new IllegalArgumentException("좌석타입 오류: " + seatType);
+        }
+        String sql = "UPDATE movie SET " + columnName + " = " + columnName + " - 1 WHERE id = ?";
+        try (Connection conn = DriverManager.getConnection(URL, USER, PW);
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, movieId);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.out.println("좌석 차감 실패: " + e.getMessage());
+            return false;
+        }
+    }
+
+
+    public boolean incrementSeatCount(int movieId, String seatType) {
+        String columnName = null;
+        switch (seatType) {
+            case "노약좌석": columnName = "senior_seat_count"; break;
+            case "임산부석": columnName = "pregnant_seat_count"; break;
+            case "일반석": columnName = "general_seat_count"; break;
+            case "프리미엄석": columnName = "premium_seat_count"; break;
+            default: throw new IllegalArgumentException("좌석타입 오류: " + seatType);
+        }
+        String sql = "UPDATE movie SET " + columnName + " = " + columnName + " + 1 WHERE id = ?";
+        try (Connection conn = DriverManager.getConnection(URL, USER, PW);
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, movieId);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.out.println("좌석 복구 실패: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public int findMovieIdByTitleAndTime(String title, String time) {
+        String sql = "SELECT id FROM movie WHERE title = ? AND time = ?";
+        try (Connection conn = DriverManager.getConnection(URL, USER, PW);
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, title);
+            ps.setString(2, time);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) return rs.getInt("id");
+            }
+        } catch (SQLException e) {
+            System.out.println("movieId 조회 실패: " + e.getMessage());
+        }
+        return -1;
+    }
+
+
 }
 

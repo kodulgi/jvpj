@@ -20,3 +20,9 @@ public class MovieServiceProxy implements MovieService{
         return movieService.registerMovie();
     }
 }
+
+    @Override
+    public boolean exists(String title) {
+        return movieService.exists(title);
+    }
+    

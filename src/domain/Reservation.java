@@ -1,5 +1,6 @@
 package domain;
 
+import domain.Reservation;
 public class Reservation {
 
     private int ReservationId;

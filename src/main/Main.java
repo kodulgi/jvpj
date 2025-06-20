@@ -26,7 +26,7 @@ public class Main {
                         mainMenu.showMenu();
                     }
                 } else if (choice == 3) {
-                    System.out.println("이용해 주셔서 감사합니다.");
+                    System.out.println("이용해 주셔서 갑사합니다.");
                     break;
                 }
             }
